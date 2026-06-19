@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Portfolio</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050816;
+  color:white;
+  overflow-x:hidden;
+}
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(5,8,22,.7);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+nav{
+  max-width:1200px;
+  margin:auto;
+  padding:18px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:900;
+}
+
+.logo span{
+  color:#ff4ecd;
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+}
+
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  font-size:15px;
+  opacity:.85;
+}
+
+.nav-links a:hover{
+  color:#ff4ecd;
+}
+
+.hero{
+  min-height:100vh;
+  padding:140px 24px 80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at top left,#7c3aed55,transparent 35%),
+    radial-gradient(circle at right,#ec489955,transparent 35%),
+    linear-gradient(135deg,#050816,#0f172a,#111827);
+}
+
+.hero-inner{
+  max-width:1200px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:50px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  padding:10px 18px;
+  border:1px solid #ff4ecd;
+  border-radius:50px;
+  color:#ffb3ef;
+  margin-bottom:25px;
+  background:rgba(255,255,255,.06);
+}
+
+.hero h1{
+  font-size:clamp(52px,9vw,120px);
+  line-height:.9;
+  letter-spacing:-4px;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#ff4ecd,#7c3aed,#38bdf8);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  margin-top:25px;
+  max-width:600px;
+  color:#cbd5e1;
+  font-size:19px;
+  line-height:1.7;
+}
+
+.buttons{
+  margin-top:35px;
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:15px 30px;
+  border-radius:50px;
+  text-decoration:none;
+  color:white;
+  font-weight:800;
+  background:linear-gradient(135deg,#ff4ecd,#7c3aed);
+  box-shadow:0 0 35px #ff4ecd66;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:translateY(-6px);
+}
+
+.btn.secondary{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:none;
+}
+
+.visual{
+  position:relative;
+}
+
+.visual img{
+  width:100%;
+  border-radius:35px;
+  box-shadow:0 30px 90px #000;
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.float-card{
+  position:absolute;
+  bottom:-25px;
+  left:-25px;
+  padding:22px;
+  border-radius:24px;
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.18);
+}
+
+section{
+  padding:100px 24px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  font-size:clamp(36px,5vw,60px);
+  margin-bottom:18px;
+}
+
+.section-subtitle{
+  text-align:center;
+  color:#94a3b8;
+  max-width:700px;
+  margin:0 auto 60px;
+  line-height:1.7;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+}
+
+.card{
+  padding:30px;
+  border-radius:28px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(18px);
+  transition:.35s;
+}
+
+.card:hover{
+  transform:translateY(-12px);
+  border-color:#ff4ecd;
+  box-shadow:0 25px 60px #000;
+}
+
+.card h3{
+  font-size:24px;
+  margin-bottom:14px;
+}
+
+.card p{
+  color:#cbd5e1;
+  line-height:1.6;
+}
+
+.icon{
+  font-size:42px;
+  margin-bottom:20px;
+}
+
+.projects{
+  background:#080b1f;
+}
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:28px;
+}
+
+.project{
+  overflow:hidden;
+  border-radius:30px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.project img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  transition:.4s;
+}
+
+.project:hover img{
+  transform:scale(1.08);
+}
+
+.project-content{
+  padding:25px;
+}
+
+.project-content h3{
+  font-size:25px;
+  margin-bottom:10px;
+}
+
+.project-content p{
+  color:#cbd5e1;
+  line-height:1.6;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:25px;
+  text-align:center;
+}
+
+.stat{
+  padding:35px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#7c3aed55,#ec489955);
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.stat h2{
+  font-size:48px;
+}
+
+.contact{
+  text-align:center;
+  background:
+    radial-gradient(circle at center,#7c3aed66,transparent 35%),
+    #050816;
+}
+
+.contact h2{
+  font-size:clamp(40px,6vw,80px);
+  margin-bottom:25px;
+}
+
+.contact p{
+  color:#cbd5e1;
+  margin-bottom:35px;
+  font-size:18px;
+}
+
+footer{
+  padding:30px;
+  text-align:center;
+  color:#94a3b8;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* tablet */
+@media(max-width:900px){
+  .hero-inner{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .hero p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .buttons{
+    justify-content:center;
+  }
+
+  .float-card{
+    left:20px;
+  }
+}
+
+/* mobile */
+@media(max-width:600px){
+  nav{
+    flex-direction:column;
+    gap:15px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+  }
+
+  .hero{
+    padding-top:180px;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .visual img{
+    border-radius:22px;
+  }
+
+  .float-card{
+    position:static;
+    margin-top:18px;
+  }
+
+  section{
+    padding:75px 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Nova<span>Studio.</span></div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#stats">Stats</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge">Creative Digital Portfolio</div>
+      <h1>Build.<br><span>Design.</span><br>Launch.</h1>
+      <p>
+        A premium portfolio concept for agencies, freelancers, designers,
+        developers, and creative brands who want a bold online presence.
+      </p>
+      <div class="buttons">
+        <a href="#work" class="btn">Explore Work</a>
+        <a href="#contact" class="btn secondary">Start Project</a>
+      </div>
+    </div>
+
+    <div class="visual">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200" alt="Creative workspace">
+      <div class="float-card">
+        <h3>50+ Projects</h3>
+        <p>Modern websites delivered</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">What We Create</h2>
+    <p class="section-subtitle">
+      Clean, colorful, responsive digital experiences made for real businesses.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🌐</div>
+        <h3>Websites</h3>
+        <p>Responsive business websites with modern UI and fast performance.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎨</div>
+        <h3>UI Design</h3>
+        <p>Beautiful layouts, colors, typography, and clean user experience.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Landing Pages</h3>
+        <p>High-converting pages for brands, products, apps, and services.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🚀</div>
+        <h3>Brand Launch</h3>
+        <p>Complete online presence for startups and personal brands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="work">
+  <div class="container">
+    <h2 class="section-title">Featured Work</h2>
+    <p class="section-subtitle">
+      Demo project cards with colorful images and hover effects.
+    </p>
+
+    <div class="project-grid">
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000" alt="">
+        <div class="project-content">
+          <h3>Analytics Dashboard</h3>
+          <p>A clean dashboard concept for business growth and reports.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1000" alt="">
+        <div class="project-content">
+          <h3>App Landing Page</h3>
+          <p>Modern app website with bold gradients and smooth sections.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=1000" alt="">
+        <div class="project-content">
+          <h3>Creative Agency</h3>
+          <p>A stylish landing page for design studios and creative teams.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="container">
+    <div class="stats">
+      <div class="stat">
+        <h2>50+</h2>
+        <p>Projects</p>
+      </div>
+      <div class="stat">
+        <h2>25+</h2>
+        <p>Brands</p>
+      </div>
+      <div class="stat">
+        <h2>98%</h2>
+        <p>Satisfaction</p>
+      </div>
+      <div class="stat">
+        <h2>24/7</h2>
+        <p>Support</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <h2>Let’s Create Something Beautiful</h2
+    <p>Turn ideas into a premium website that looks professional everywhere.</p>
+    <a href="aarav.singh.tiwari@gmail.com" class="btn">Contact Now</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 NovaStudio. All rights reserved.
+</footer>
+
+</body>
+</html>
